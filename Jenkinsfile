@@ -24,11 +24,11 @@ pipeline {
         stage('Deploy to AWS EC2') {
             steps {
                 sh '''
-                    scp -i /root/.ssh/id_rsa -o StrictHostKeyChecking=no \
+                    scp -i /var/jenkins_home/.ssh/id_rsa -o StrictHostKeyChecking=no \
                     target/devops-java-app-1.0.0.jar \
                     ubuntu@13.233.37.50:~/devops-java-app-1.0.0.jar
                     
-                    ssh -i /root/.ssh/id_rsa -o StrictHostKeyChecking=no \
+                    ssh -i /var/jenkins_home/.ssh/id_rsa -o StrictHostKeyChecking=no \
                     ubuntu@13.233.37.50 \
                     "sudo systemctl restart devops-app"
                 '''
